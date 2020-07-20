@@ -1,0 +1,31 @@
+mvn spring-boot:run
+
+http://localhost:8080/hello?name=Cesar
+or
+curl -D GET "http://localhost:8080/hello?name=Cesar"
+
+{"timestamp":"2020-07-20T16:37:28.908+0000","status":403,"error":"Forbidden","message":"Access Denied","path":"
+/hello"}
+
+
+curl -d "user=Cesar&password=pwd" -H "Content-Type: application/x-www-form-urlencoded" -X POST "http://localhost:8080/user"
+or
+curl -d "user=Cesar&password=pwd" -X POST "http://localhost:8080/user"
+
+{"user":"Cesar","pwd":null,"token":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0SldUIiwic3ViIjoiQ2VzYXIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNTk1Mjc3MTk5LCJleHAiOjE1OTUyNzc3OTl9.W0MxnwH2gfChyjYnAKo82ttI9vy2xC45ya41ReBfOIZIxJsbcLpjYaXzrKbxasyuAtjU4-mXqi8IfP046DjzDg"}
+
+curl -D- -X GET -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0SldUIiwic3ViIjoiQ2VzYXIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNTk1Mjc3MTk5LCJleHAiOjE1OTUyNzc3OTl9.W0MxnwH2gfChyjYnAKo82ttI9vy2xC45ya41ReBfOIZIxJsbcLpjYaXzrKbxasyuAtjU4-mXqi8IfP046DjzDg" "http://localhost:8080/hello?name=Cesar"
+
+HTTP/1.1 200
+Set-Cookie: JSESSIONID=8CD29288BAB77F4B51C899ADA07BFB89; Path=/; HttpOnly
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: text/plain;charset=UTF-8
+Content-Length: 13
+Date: Mon, 20 Jul 2020 16:45:22 GMT
+
+Hello Cesar!!
